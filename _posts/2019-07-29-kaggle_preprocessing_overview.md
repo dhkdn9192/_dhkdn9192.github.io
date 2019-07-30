@@ -1,24 +1,16 @@
 ---
-title: Coursera Kaggle - Week1
+title: Coursera Kaggle - 1. Numeric Features
 ---
 
 ![intro](../img/posts/20190730_coursera_kaggle_intro.png)
 
-Coursera "How to Win a Data Science Competition: Learn from Top Kagglers" 강의 정리. Kaggle 문제 해결을 통한 Data Science 능력을 키워보자.
 
-## Week1 - Feature preprocessing and generation with respect to models
 
+## Week1 - Feature preprocessing and generation with respect to models: Numeric Features
+- Coursera "How to Win a Data Science Competition: Learn from Top Kagglers" 강의 정리.
+- Kaggle 문제 해결을 통한 Data Science 능력을 키워보자.
 - https://www.coursera.org/learn/competitive-data-science
 
-
-### 0. 학습 목표
-- Explain how employed model impacts choice of preprocessing
-- Summarize feature preprocessings for numeric and categorical features
-- Summarize feature generation approaches for datetime and coordinates
-- Summarize approaches to deal with missing values
-- Outline the pipeline of applying Bag of Words
-- Compare Bag of Words and Word2vec
-- Explain how to extract CNN descriptors from images
 
 ### 1. Overview
 
