@@ -1,0 +1,38 @@
+# Site settings
+title: 김동혁의 블로그 | Developer - Bigdata / Machine Learning
+description: "My engineering blog"
+url: "http://www.jacoporabolini.com/emerald"
+author:
+  name: "dhkim"
+  email: "dhkdn9192@naver.com"
+  url: "dhkdn9192.github.io"
+
+# Build settings
+baseurl: "https://dhkdn9192.github.io" # Change this to your relative path (ex: /blog/), or leave just a /
+markdown: kramdown
+source: .
+destination: ./_site
+permalink: /:title
+paginate: 8
+paginate_path: /page:num/
+
+# Default values
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+
+# Plugins
+gems:
+  - jekyll-paginate
+
+# Custom variables
+version: "1.1.0"
+
+# Options
+custom_header: false
+custom_nav_footer: false
+reverse: false
