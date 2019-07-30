@@ -1,9 +1,12 @@
 ---
-title: Week1 - Feature Preprocessing and Generation with Respect to Models
+title: Coursera Kaggle - Week1
 ---
-coursera "How to Win a Data Science Competition: Learn from Top Kagglers" 강의 정리.
 
-Week1 - Feature Preprocessing and Generation with Respect to Models
+Coursera "How to Win a Data Science Competition: Learn from Top Kagglers" 강의 정리. Kaggle 문제 해결을 통한 Data Science 능력을 키워보자
+
+Week1 - Feature preprocessing and generation with respect to models
+(https://www.coursera.org/learn/competitive-data-science)
+
 
 ### 학습 목표
 - Explain how employed model impacts choice of preprocessing
@@ -96,9 +99,10 @@ Week1 - Feature Preprocessing and Generation with Respect to Models
 - rank란?
   - 적절하게 분류된 값들에 대해 균등하게 공간을 배치하는 것.
   - rank transformation은 outlier들을 다른 값들과 가깝도록 배치하므로 MinMaxScaler보다 더 나은 효과를 낼 수도 있다.
+  - example
+  ```
+  rank([-100, 0, 3000]) == [0, 1, 2]
+  rank([10, 3, 500]) == [1, 0, 2]
+  ```
 
-- Example
-
-
-    rank([-100, 0, 3000]) == [0, 1, 2]
-    rank([10, 3, 500]) == [1, 0, 2]
+  - linear models, KNN, neural network의 경우, outlier를 일일이 처리할 시간이 없을 경우 유용하게 쓸 수 있다.
