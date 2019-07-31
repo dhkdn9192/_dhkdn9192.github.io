@@ -130,7 +130,7 @@ title: Coursera Kaggle - 1. Numeric Features
 - 예시3
   - 상품의 가격이 소숫점(\$2.99)으로 표기된다면 소숫점 부분(0.99)만 잘라 새로운 feature를 생성할 수 있다. 이 경우, financial 데이터 또는 고객의 상품 가격에 반응하는 정도와 같은 문제에서 유용할 수 있다.
 
-### 4. Conclusion
+### 4. Summary
 
 1. Numeric 데이터의 전처리는 tree models / non-tree models에 따라 다르다.
   - tree models는 scaling에 영향을 받지 않는다.
