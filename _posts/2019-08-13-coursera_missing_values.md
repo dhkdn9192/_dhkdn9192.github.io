@@ -84,3 +84,35 @@ title: Coursera Kaggle - 3. Missing Values
 4. isnull과 같은 binary feature를 추가하는 방법이 효과적일 수 있다.
 5. 일반적으로 feature generation 전에 fillna를 수행해선 안된다.
 6. XGBoost는 NaN을 해결해준다.
+
+
+### 연습문제
+
+##### 1. What type does a feature with values: [‘low’, ‘middle’, ‘high’] most likely have?
+
+- ordinal (ordered categorical)
+
+##### 2. Suppose you have a dataset X, and a version of X where each feature has been standard scaled. For which model types training or testing quality can be much different depending on the choice of the dataset?
+
+- Neural Network
+    - There are two reasons for this: first, amount of regularization applied to a feature depends on the feature's scale. Second, optimization methods can perform differently depending on relative scale of features.
+- Nearest Neighbours
+    - The reason for it is that the scale of features impacts the distance between samples. Thus, with different scaling of the features nearest neighbors for a selected object can be very different.
+- Linear Models
+    - There are two reasons for this: first, amount of regularization applied to a feature depends on the feature's scale. Second, optimization methods can perform differently depending on relative scale of features.
+
+
+##### 3. Suppose we want to fit a GBDT model to a data with a categorical feature. We need to somehow encode the feature. Which of the following statements are true?
+
+- Depending on dataset either of label encoder or one-hot encoder could be better.
+
+
+##### 4. What can be useful to do about missing values?
+
+- Nothing, but use a model that can deal with them out of the box
+    - Some models like XGBoost and CatBoost can deal with missing values out-of-box. These models have special methods to treat them and a model's quality can benefit from it.
+
+- Reconstruct them
+- Replace them with constant(\-999, \-1, etc)
+- Impute with a feature mean
+- Remove rows with missing values
