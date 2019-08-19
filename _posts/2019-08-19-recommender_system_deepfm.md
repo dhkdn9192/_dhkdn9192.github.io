@@ -22,11 +22,7 @@ title: Recommender System
 위키백과
 
 
-<p align="center">
-<img width=400 src="../img/2019/recommender_system_deepfm/mf.png">
-</p>
-
-<!-- ![1.1](../img/2019/recommender_system_deepfm/mf.png) -->
+![1.1](../img/2019/recommender_system_deepfm/mf.png)
 
 
 #### 1.1 개요
@@ -44,11 +40,7 @@ title: Recommender System
 이제 MF를 학습하는 것은 latent feature들을 학습하는 것과 같다는 것을 알게 되었다. Latent 행렬을 각각 P, Q라고 했을 때 이제 MF 모델의 목적함수는 다음과 같다.
 
 
-<p align="center">
-    <img width=380 src="../img/2019/recommender_system_deepfm/mf_objective_func.gif">
-</p>
-
-<!-- ![1.2](../img/2019/recommender_system_deepfm/mf_objective_func.gif) -->
+![1.2](../img/2019/recommender_system_deepfm/mf_objective_func.gif)
 
 
 이 목적함수를 최소화 하는 것이 P와 Q를 학습하기 위한 것이다. 결국 rating의 y-y^ 제곱을 오차로 활용하는 것이기 때문에, 일반적인 regression에서의 최적화와 마찬가지로 정규화 파라미터를 추가해준다.
@@ -61,11 +53,13 @@ title: Recommender System
 #### 1.4 참조
 - https://yamalab.tistory.com/89
 
+<p>
 
-<b>
 
 ------------------------
 
+
+<p>
 
 
 ## 2. Factorization-Machine (FM)
@@ -79,19 +73,19 @@ title: Recommender System
 #### 2.2 Model Equation
 먼저, degree d = 2인 Factorization Machine의 모델은 다음과 같이 정의된다. 다시 얘기하겠지만, degree가 2라는 것은 latent vector를 조합하는 후보의 수를 2개로 하겠다는 것이다.
 
-<p align="center">
-  <img width=380 src="../img/2019/recommender_system_deepfm/fm_func.png">
-</p>
- 
+
+![2.2](../img/2019/recommender_system_deepfm/fm_func.png)
+
+
 (w는 바이어스, v는 latent vector, x는 입력 feature)
 
 Matrix Factorization의 개념을 다시 한 번 복기해보자. User X Item을 index로 하여 rating으로 value가 채워진 Matrix R이 있다고 하자. 이를 두개의 latent vector로 분해하여 V1(u X k), V2(i X k) 로 나타낼 수 있다. 이 때 추정해야되는 변수는 global bias W0, V1 bias W_u, V2 bias W_i, latent vector W(혹은 V)이다. 이 때 k가 늘어날 수록 W의 변수가 많아지기 때문에, R^가 R에 근사할 수 있는 변수를 더 많이 계산하게 된다. 또한 W1, W2의 shape은 k가 1인 V1, V2와 동일한 shape을 가진다.
 
 FM을 위해 다음과 같은 데이터 셋을 예시로 한다.
 
-<p align="center">
-  <img width=500 src="../img/2019/recommender_system_deepfm/fm_data_set_table.png">
-</p> 
+
+![2.2](../img/2019/recommender_system_deepfm/fm_data_set_table.png)
+
 
 user와 item을 row, column index로 하는 데이터와는 구성이 약간 다르다. 위 데이터셋에서 User에 대한 sparse vector(one-hot encoding)을 x1, Item에 대한 vector를 x2, 그리고 추가적인 피처들을 x_n 이라 하자. 그리고 x1에 대한 latent vector를 V1, x_n에 대한 latent vector를 V_n이라고 할 것이다. MF와 마찬가지로, V의 row v_i는 i-th variable with k factor를 의미한다. 이제 다시 FM의 equation을 보면, 수식에 FM의 아이디어가 그대로 녹아있다는 것을 확인할 수 있다.
 
@@ -109,32 +103,60 @@ FM 모델은 가능한 모든 피처간의 interaction을 full-parametrized one 
 - 대규모의 sparse한 데이터를 처리 할 수 있다.
 
 
+<p>
+
+
 #### 2.4 MF와의 비교
 - MF가 User-Item간의 Rating만 계산했다면 FM은 모든 피처쌍의 pairwise interaction을 찾아 Rating을 도출한다.
 - MF와 달리 User, Item, Rating의 데이터 외 추가적인 메타데이터를 입력받을 수 있다. 즉 feature-rich 데이터 셋에 적합하다.
 
 
+<p>
+
+
 #### 2.5 deepCTR 라이브러리의 FM
 FM은 임베드 아이디어를 기반으로 한다. 즉, 각 카테고리 피처를 latent vector로 취급하고 해당 반복 정보를 latent vector의 inner product으로 모델링한다.
- 
+
+
+<p>
+
 
 #### 2.6 참조
 - https://deepctr.readthedocs.io/en/latest/models/TraditionalModels.html#fm-factorization-machines
 
 
+<p>
+
 
 ------------------------
+
+
+<p>
 
 
 ## 3. Factorization-supported Neural Network
 
 
+<p>
+
+
 ------------------------
+
+
+<p>
+
 
 ## 4. Wide & Deep
 
 
+<p>
+
+
 ------------------------
+
+
+<p>
+
 
 ## 5. DeepFM
 
