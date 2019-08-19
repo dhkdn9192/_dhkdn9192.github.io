@@ -19,11 +19,15 @@ title: Recommender System
 
 > Matrix Factorization은 추천 시스템에서 사용되는 협업 필터링 알고리즘이다. User-Item 상호작용 행렬을 두 개의 낮은 차원의 직사각형 행렬의 곱으로 분해하여 작동한다. 이 방법은 Simonflik가 2006 년 블로그 게시물에서 연구 결과와 연구 결과를 공유 한 결과 그 효과 때문에 Netflix 상금 도전 중에 널리 알려졌다.
 기본 개념은 낮은 차원의 잠재 공간에서 User-Item을 분리하여 나타내는 것이다. 2006년 Funk의 초기 작업 이후, 추천 시스템을 위해 다수의 행렬 분해 방법이 제안되었다. (Funk SVD, SVD++ 등)
-<위키백과>
+위키백과
+
 
 <p align="center">
-  <img width=400 src="../img/2019/recommender_system_deepfm/mf.png">
+    <img width=400 src="../img/2019/recommender_system_deepfm/mf.png">
 </p>
+
+<!-- ![1.1](../img/2019/recommender_system_deepfm/mf.png) -->
+
 
 #### 1.1 개요
 우선 MF 모델은 user-item 의 matrix에서 이미 rating이 부여되어 있는 상황을 가정한다. (당연히 sparse한 matrix를 가정한다)  MF의 목적은, 바꿔 말하면 Matrix Complement 이다. <b>아직 평가를 내리지 않은 user-item의 빈 공간을 Model-based Learning으로 채워 넣는 것을 의미</b>한다.
@@ -41,8 +45,10 @@ title: Recommender System
 
 
 <p align="center">
-  <img width=380 src="../img/2019/recommender_system_deepfm/mf_objective_func.gif">
+    <img width=380 src="../img/2019/recommender_system_deepfm/mf_objective_func.gif">
 </p>
+
+<!-- ![1.2](../img/2019/recommender_system_deepfm/mf_objective_func.gif) -->
 
 
 이 목적함수를 최소화 하는 것이 P와 Q를 학습하기 위한 것이다. 결국 rating의 y-y^ 제곱을 오차로 활용하는 것이기 때문에, 일반적인 regression에서의 최적화와 마찬가지로 정규화 파라미터를 추가해준다.
@@ -56,9 +62,12 @@ title: Recommender System
 - https://yamalab.tistory.com/89
 
 
+<b>
+
 ------------------------
 
- 
+
+
 ## 2. Factorization-Machine (FM)
 
 #### 2.1 개요
