@@ -23,12 +23,11 @@ title: Recommender System
 
 
 <p align="center">
-
 <img width=500 src="../img/2019/recommender_system_deepfm/mf.png">
-
 </p>
 
-#### 1.1 개요
+
+### 1.1 개요
 우선 MF 모델은 user-item 의 matrix에서 이미 rating이 부여되어 있는 상황을 가정한다. (당연히 sparse한 matrix를 가정한다)  MF의 목적은, 바꿔 말하면 Matrix Complement 이다. <b>아직 평가를 내리지 않은 user-item의 빈 공간을 Model-based Learning으로 채워 넣는 것을 의미</b>한다.
 
 유저간, 혹은 아이템간 유사도를 이용하는 Memory-based 방법과 달리, MF는 행렬 인수분해라는 수학적 방법으로 접근한다. 이는 행렬은 두개의 하위 행렬로 분해가 가능하며, 다시 곱해져서 원래 행렬과 동일한 크기의 단일 행렬이 될 수 있다는 성질에 기인한 것이다.
@@ -42,11 +41,11 @@ title: Recommender System
 
 이제 MF를 학습하는 것은 latent feature들을 학습하는 것과 같다는 것을 알게 되었다. Latent 행렬을 각각 P, Q라고 했을 때 이제 MF 모델의 목적함수는 다음과 같다.
 
+
 <p align="center">
-
 <img width=380 src="../img/2019/recommender_system_deepfm/mf_objective_func.gif">
-
 </p>
+
 
 이 목적함수를 최소화 하는 것이 P와 Q를 학습하기 위한 것이다. 결국 rating의 y-y^ 제곱을 오차로 활용하는 것이기 때문에, 일반적인 regression에서의 최적화와 마찬가지로 정규화 파라미터를 추가해준다.
 
@@ -69,21 +68,20 @@ title: Recommender System
 
 ## 2. Factorization-Machine (FM)
 
-#### 2.1 개요
+### 2.1 개요
 <b>FM 모델은 개인화를 위해 머신러닝을 추천 영역의 기술로 개량한 것</b>이다. Matrix/Tensor Factorization 혹은 Polynomial regression과 같은 Generalization을 매우 잘 수행하는 알고리즘으로 입증되어 있다.
 
 대부분의 추천 문제들은 (user, item, rating) 으로 이루어진 튜플셋을 데이터로 사용한다. 이 데이터들을 이용하여, CF의 다양한 방법들로 좋은 결과들을 도출할 수 있었다. 하지만 대부분의 real-world 에서는 (tags, categories, genres) 등과 같은 풍부한 메타데이터가 오히려 더 좋은 데이터셋으로 쓰인다. 그래서 이론적으로는 rating이 매겨진 튜플셋을 우선적으로 고려하지만, 실제 추천 시스템에서는 메타데이터를 고려하는 것이 더 중요하다. FM을 사용하면, 이러한 feature-rich 데이터셋을 사용하기에 좋다. 
 
 
-#### 2.2 Model Equation
+### 2.2 Model Equation
 먼저, degree d = 2인 Factorization Machine의 모델은 다음과 같이 정의된다. 다시 얘기하겠지만, degree가 2라는 것은 latent vector를 조합하는 후보의 수를 2개로 하겠다는 것이다.
 
 
 <p align="center">
-
 <img width=500 src="../img/2019/recommender_system_deepfm/fm_func.png">
-
 </p>
+
 
 (w는 바이어스, v는 latent vector, x는 입력 feature)
 
@@ -92,12 +90,10 @@ Matrix Factorization의 개념을 다시 한 번 복기해보자. User X Item을
 FM을 위해 다음과 같은 데이터 셋을 예시로 한다.
 
 
-
 <p align="center">
-
 <img width=500 src="../img/2019/recommender_system_deepfm/fm_data_set_table.png">
-
 </p>
+
 
 user와 item을 row, column index로 하는 데이터와는 구성이 약간 다르다. 위 데이터셋에서 User에 대한 sparse vector(one-hot encoding)을 x1, Item에 대한 vector를 x2, 그리고 추가적인 피처들을 x_n 이라 하자. 그리고 x1에 대한 latent vector를 V1, x_n에 대한 latent vector를 V_n이라고 할 것이다. MF와 마찬가지로, V의 row v_i는 i-th variable with k factor를 의미한다. 이제 다시 FM의 equation을 보면, 수식에 FM의 아이디어가 그대로 녹아있다는 것을 확인할 수 있다.
 
@@ -110,32 +106,27 @@ user와 item을 row, column index로 하는 데이터와는 구성이 약간 다
 FM 모델은 가능한 모든 피처간의 interaction을 full-parametrized one 대신에 사용한다. 이를 통해 매우 희소한 데이터에서도 관계를 추정할 수 있다. 또한 SVD, SVM등의 알고리즘보다 속도나 성능 측면에서도 월등하게 좋은 알고리즘이다.
 
 
-#### 2.3 FM의 장점
+### 2.3 FM의 장점
 - 신뢰할 수 있는 상호 작용 정보를 모델링 할 수 있다.
 - 대규모의 sparse한 데이터를 처리 할 수 있다.
 
 
-<p>
-
-
-#### 2.4 MF와의 비교
+### 2.4 MF와의 비교
 - MF가 User-Item간의 Rating만 계산했다면 FM은 모든 피처쌍의 pairwise interaction을 찾아 Rating을 도출한다.
 - MF와 달리 User, Item, Rating의 데이터 외 추가적인 메타데이터를 입력받을 수 있다. 즉 feature-rich 데이터 셋에 적합하다.
 
 
-<p>
-
-
-#### 2.5 deepCTR 라이브러리의 FM
+### 2.5 deepCTR 라이브러리의 FM
 FM은 임베드 아이디어를 기반으로 한다. 즉, 각 카테고리 피처를 latent vector로 취급하고 해당 반복 정보를 latent vector의 inner product으로 모델링한다.
 
+<p align="center">
+<img width=500 src="../img/2019/recommender_system_deepfm/fm_deepctr_architecture.png">
+</p>
 
-<p>
 
-
-#### 2.6 참조
+### 2.6 참조
 - https://deepctr.readthedocs.io/en/latest/models/TraditionalModels.html#fm-factorization-machines
-
+- https://yamalab.tistory.com/107
 
 <p>
 
@@ -148,6 +139,16 @@ FM은 임베드 아이디어를 기반으로 한다. 즉, 각 카테고리 피�
 
 ## 3. Factorization-supported Neural Network
 
+### 3.1 개요
+
+FNN은 희소한 피처를 밀도 높은 latent vector로 임베딩한 뒤 DNN에 입력한다. 또한 저차원 및 고차원 피처 상호작용을 모델링한다.
+
+네트워크 구조는 아래와 같다.
+
+
+<p align="center">
+<img width=500 src="../img/2019/recommender_system_deepfm/fnn_architecture.png">
+</p>
 
 <p>
 
@@ -160,6 +161,15 @@ FM은 임베드 아이디어를 기반으로 한다. 즉, 각 카테고리 피�
 
 ## 4. Wide & Deep
 
+### 4.1 개요
+
+Wide & Deep의 Deep 부분은 희소한 피처를 밀도 높은 latent vector로 임베딩한 뒤 latent vector를 입력으로 연결하여 DNN을 적용하는 점에서 FNN과 동일하다.
+
+한편, Wide 부분은 수작업으로 생성된 피처와 Deep 부분의 암시적인 고수준 피처 출력을 결합한다.
+
+<p align="center">
+<img width=500 src="../img/2019/recommender_system_deepfm/wide_and_deep_architecture.png">
+</p>
 
 <p>
 
