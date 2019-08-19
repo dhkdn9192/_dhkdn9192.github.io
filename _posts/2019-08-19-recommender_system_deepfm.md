@@ -22,8 +22,11 @@ title: Recommender System
 위키백과
 
 
-![1.1](../img/2019/recommender_system_deepfm/mf.png)
+<p align="center">
 
+<img width=500 src="../img/2019/recommender_system_deepfm/mf.png">
+
+</p>
 
 #### 1.1 개요
 우선 MF 모델은 user-item 의 matrix에서 이미 rating이 부여되어 있는 상황을 가정한다. (당연히 sparse한 matrix를 가정한다)  MF의 목적은, 바꿔 말하면 Matrix Complement 이다. <b>아직 평가를 내리지 않은 user-item의 빈 공간을 Model-based Learning으로 채워 넣는 것을 의미</b>한다.
@@ -35,22 +38,24 @@ title: Recommender System
 또한 한 가지 알 수 있는 것은, 분해된 행렬 P, Q는 각각 User-latent factor matrix, Item-latent factor matrix라는 각각의 내재적 의미를 나타내는 잠재 행렬도 나타낼 수 있다는 것이다. 이는 사람이 해석하는 잠재의미로도 해석은 가능하지만 기계가 해석하기 위한 행렬, 즉 블랙 박스 모델에 더 가깝다.
 
 
-#### 1.2 목적함수
+### 1.2 목적함수
 
 이제 MF를 학습하는 것은 latent feature들을 학습하는 것과 같다는 것을 알게 되었다. Latent 행렬을 각각 P, Q라고 했을 때 이제 MF 모델의 목적함수는 다음과 같다.
 
+<p align="center">
 
-![1.2](../img/2019/recommender_system_deepfm/mf_objective_func.gif)
+<img width=380 src="../img/2019/recommender_system_deepfm/mf_objective_func.gif">
 
+</p>
 
 이 목적함수를 최소화 하는 것이 P와 Q를 학습하기 위한 것이다. 결국 rating의 y-y^ 제곱을 오차로 활용하는 것이기 때문에, 일반적인 regression에서의 최적화와 마찬가지로 정규화 파라미터를 추가해준다.
 
 
-#### 1.3 ALS
+### 1.3 ALS (Alternating Least Square)
 교대 최소 제곱법, ALS는 위에서 정의한 목적함수를 최적화하는 기법이다. 일반적인 파라미터 최적화 기법으로 Gradient Descent를 사용하지만, 추천 알고리즘의 computation 환경인 분산처리 플랫폼에서는 GD보다 ALS가 더욱 효과적이라고 알려져 있다. 이는 ALS의 계산 방법 때문인데, <b>GD에서처럼 Loss에 대한 편미분값을 update gradient로 활용하는 것이 아닌, P와 Q 벡터 중 하나를 고정해놓고 교대로 계산</b>하기 때문이다. 이러한 방법은 분산처리 환경에서 더욱 빠른 연산이 가능해진다. 또한 ALS는 GD와 비교해볼때 sparse한 데이터에 robust한 모습을 보인다고 알려져 있다. Spark에서는 MF의 기본 학습법을 ALS에 기반하여 ML library로 제공하는데, Implicit feedback에 최적화된 학습까지 제공한다
 
 
-#### 1.4 참조
+### 1.4 참조
 - https://yamalab.tistory.com/89
 
 <p>
@@ -74,8 +79,11 @@ title: Recommender System
 먼저, degree d = 2인 Factorization Machine의 모델은 다음과 같이 정의된다. 다시 얘기하겠지만, degree가 2라는 것은 latent vector를 조합하는 후보의 수를 2개로 하겠다는 것이다.
 
 
-![2.2](../img/2019/recommender_system_deepfm/fm_func.png)
+<p align="center">
 
+<img width=500 src="../img/2019/recommender_system_deepfm/fm_func.png">
+
+</p>
 
 (w는 바이어스, v는 latent vector, x는 입력 feature)
 
@@ -84,8 +92,12 @@ Matrix Factorization의 개념을 다시 한 번 복기해보자. User X Item을
 FM을 위해 다음과 같은 데이터 셋을 예시로 한다.
 
 
-![2.2](../img/2019/recommender_system_deepfm/fm_data_set_table.png)
 
+<p align="center">
+
+<img width=500 src="../img/2019/recommender_system_deepfm/fm_data_set_table.png">
+
+</p>
 
 user와 item을 row, column index로 하는 데이터와는 구성이 약간 다르다. 위 데이터셋에서 User에 대한 sparse vector(one-hot encoding)을 x1, Item에 대한 vector를 x2, 그리고 추가적인 피처들을 x_n 이라 하자. 그리고 x1에 대한 latent vector를 V1, x_n에 대한 latent vector를 V_n이라고 할 것이다. MF와 마찬가지로, V의 row v_i는 i-th variable with k factor를 의미한다. 이제 다시 FM의 equation을 보면, 수식에 FM의 아이디어가 그대로 녹아있다는 것을 확인할 수 있다.
 
