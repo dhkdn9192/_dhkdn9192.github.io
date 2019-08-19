@@ -23,7 +23,7 @@ title: Recommender System
 
 
 <p align="center">
-    <img width=400 src="../img/2019/recommender_system_deepfm/mf.png">
+<img width=400 src="../img/2019/recommender_system_deepfm/mf.png">
 </p>
 
 <!-- ![1.1](../img/2019/recommender_system_deepfm/mf.png) -->
